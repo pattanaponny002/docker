@@ -1,0 +1,202 @@
+run -d name:tag exposing ports "localhost:8080" on the host => 80 nginx 
+
+=> -p 8080:80
+
+docker ps -a contains every history run
+
+you should remove it
+
+docker ps -aq 
+
+==>$(docer ps -aq) ALL ID
+
+
+docker rm -f daed0116a259 => forch while running
+
+docker run --name webPong -d -p 8080:80 -p 3030:80 nginx:latest
+
+
+name it from beauti_margulis =>webPong
+
+docker ps --format="table {{.ID}}\t{{.Labels}}"
+
+
+docker ps --format "table {{.ID}}\t{{.Ports}}\t{{.Image}}\t{{.Names}}\t{{.Status}}\t{{.Size}}"
+
+
+docker run --name website_4 -v "$(pwd):/usr/share/nginx/html:ro" -d -p 8080:80 -p 9099:80 nginx:latest
+
+/// next day [Customize website_4]
+using boot strap
+
+docker run --name website_4 -v "$(pwd):/usr/share/nginx/html:ro" -d -p 8080:80 -p 9099:80 nginx:latest
+
+**Sharing volumn between bottom
+
+COPPY
+--volumes-from list
+
+
+
+CONTAINER ID   PORTS                                        IMAGE          NAMES          STATUS              SIZE
+74a595942d07   0.0.0.0:8081->80/tcp                         nginx          website-copy   Up About a minute   1.09kB (virtual 142MB)      
+469d9514278f   0.0.0.0:8080->80/tcp, 0.0.0.0:9099->80/tcp   nginx:latest   website_4      Up 4 minutes        1.09kB (virtual 142MB) 
+
+
+**Docker File
+
+FROM <IMAGE>
+
+not neccessary anymores[[volumns]]
+docker run --name website_4 [[-v "$(pwd):/usr/share/nginx/html:ro"]] -d -p 8080:80 -p 9099:80 nginx:latest
+
+COPY volumns
+                new tag           volumns command ==> from image?
+docker run --name website-copy --volumes-from website_4 -d -p 8081:80 nginx
+
+
+*[RESULT]
+
+CONTAINER ID   PORTS                                        IMAGE          NAMES          STATUS              SIZE
+74a595942d07   0.0.0.0:8081->80/tcp                         nginx          website-copy   Up About a minute   1.09kB (virtual 142MB)
+469d9514278f   0.0.0.0:8080->80/tcp, 0.0.0.0:90>
+
+**********************Create Docker file**************
+
+docker build --tag website:latest .
+
+
+FROM nginx:latest
+
+ADD . /usr/share/nginx/html 
+
+docker run --name website -p 8080:80 -d website:latest
+docker run --name website_2 -p 8080:80 -d website:latest
+docker run --name website_3 -p 8080:80 -d website:latest
+
+
+**making NODE
+
+FROM node:latest
+
+WORKDIR /app
+
+ADD . .
+
+RUN npm install
+
+
+*[Build]
+
+docker build --tag user_new:latest
+
+.[RUN]
+
+docker run --name user_api_2 -d -p 3030:8000 user_new:latest
+
+remark: -p 3030 : form loot port in the node.js
+
+**[.dockerignore]
+
+node_modules
+Dockerfile
+.git
+folder/'name'
+
+**[Cache]
+ADD package*.json ./
+
+RUN npm install
+
+ADD . .
+
+
+**CHANGING VERSION
+
+FROM node:18.11-alpine
+
+WORKDIR /app
+
+ADD package*.json ./
+
+
+RUN npm install
+
+ADD . .
+
+
+CMD node node_js.js
+
+**[run form tag]
+
+
+
+change content**
+
+REBUILD FIRST AND TAG and changing you tag**
+
+6a03b12b28b4   user-service:2   "/docker-entrypoint.…"   4 seconds ago    Up 3 seconds    0.0.0.0:8092->80/tcp   user_2
+a86a35ad43d5   user-service:1   "/docker-entrypoint.…"   29 seconds ago   Up 27 seconds   0.0.0.0:8091->80/tcp   user_1
+9bc1cbc94e03   4e52ed60a782     "/docker-entrypoint.…"   33 minutes ago   Up 33 minutes   0.0.0.0:9090->80/tcp   user
+
+**PUSH 
+
+docker LOGIN
+
+create repo nane
+
+change tag to
+
+docker push pattanaponny/user-service-2:tagname
+
+docker pull pattanaponny/user-service-2:tagname
+
+**Inspect
+
+docker inspect IMG ID bda8803ced7e
+
+** logs
+
+docker ps -a
+
+docker logs container ID not image ID
+
+** exec
+containere ID
+
+docker exec -it 379ec0bbf6d2 /bin/bash
+
+ ls -al
+
+ cd.. 
+
+ ls -al structure
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+LOGIN dckr_pat_5MeBh1O6uxJ5WtcK2RAuDzdlz_Q
+
+dckr_pat_ilyUa_iOOTVKpp1J2XUa67GGH-o

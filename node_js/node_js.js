@@ -3,20 +3,29 @@ const express = require('express')
 const app = express()
 
 
-app.get('/',(req,res)=>{
+app.get('/',(req,res)=> res.json([{  
+      name:'JSON',
+      email:'oloponnyolo@gmail.com'
+},{
 
-    const myhtml = '<h2>HELLas sasdadfsdf dO</h2>';
+    name_2:'JSON_2',
+    email:'oloponnyolo@gmail_2.com'
 
-    res.send(myhtml)
 
+},{
+
+    name_2:'JSON_3',
+    email:'oloponnyolo@gmail_2.com'
+
+
+}]))
+
+app.listen(8000,()=>{
+    console.log('HELLO docker!!')
 })
 
-app.listen(8080,()=>{
-    console.log('START SsdfERVEasd R')
-})
 
-
-// const http = require('http')
+// const http = require('http
 
 
 // const server = http.createServer((req,res)=>{
